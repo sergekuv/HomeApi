@@ -56,10 +56,10 @@ namespace HomeApi.Data.Repos
             // Если в запрос переданы параметры для обновления - проверяем их на null
             // И если нужно - обновляем устройство
             //if (!string.IsNullOrEmpty(query.NewName))
-                room.Name = query.NewName;
-            room.Area = query.NewArea;
-            room.GasConnected = query.NewGasConnected;
-            room.Voltage = query.NewVoltage;
+            room.Name = string.IsNullOrEmpty(query.NewName) ? room.Name : query.NewName;
+            room.Area = query.NewArea ?? room.Area ;
+            room.GasConnected = query.NewGasConnected ?? room.GasConnected;
+            room.Voltage = query.NewVoltage ?? room.Voltage;
 
             // Добавляем в базу 
             var entry = _context.Entry(room);

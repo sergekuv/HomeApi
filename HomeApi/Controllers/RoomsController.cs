@@ -54,7 +54,7 @@ namespace HomeApi.Controllers
 
             //existingRoom = _mapper.Map<EditRoomRequest, Room>(request);
             Data.Queries.UpdateRoomQuery query = new (
-                request.NewArea ==0 ? request.NewArea : roomToEdit.Area, request.NewGasConnected, request.NewVoltage, request.NewName);
+                request.NewArea, request.NewGasConnected, request.NewVoltage, request.NewName);
             await _repository.UpdateRoom(roomToEdit, query);
             return StatusCode(201, $"Комната {id} изменена!");
         }
